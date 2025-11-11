@@ -1,6 +1,8 @@
 export const processDocument = (dom) => {
   dom.querySelectorAll("style").forEach((btn) => btn.remove());
   dom.querySelectorAll(".copy-code-btn").forEach((btn) => btn.remove());
+  // 删除 code-block-extension-header 元素
+  dom.querySelectorAll(".code-block-extension-header").forEach((header) => header.remove());
   dom.querySelectorAll("a").forEach((a) => {
     const href = a.getAttribute("href");
     if (href?.startsWith("https://link.juejin")) {

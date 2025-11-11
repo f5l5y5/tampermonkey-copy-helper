@@ -87,6 +87,8 @@ export const copySafari = (text) => {
 };
 export const solveHtml = (el, mdcss) => {
   let html = `<div id="nice">${el.innerHTML}</div>`;
+  // 🆕 新增：删除所有 class="code-block-extension-header" 的元素及其内容 ，没有效果
+  // html = html.replace(/<[^>]*class="code-block-extension-header"[^>]*>.*?<\/[^>]*>/g, '');
   html = html.replace(/<span class="copy-code-btn"><\/span>/g, "");
   html = html.replace(
     /<mjx-container (class="inline.+?)<\/mjx-container>/g,
@@ -97,6 +99,7 @@ export const solveHtml = (el, mdcss) => {
   html = html.replace(/mjx-container/g, "section");
   html = html.replace(/class="mjx-solid"/g, 'fill="none" stroke-width="70"');
   html = html.replace(/<mjx-assistive-mml.+?<\/mjx-assistive-mml>/g, "");
+  
   const styles = document.querySelectorAll("style[nonce]");
   let basicStyle = styles[1].textContent;
   let hljscss = styles[2].textContent;
