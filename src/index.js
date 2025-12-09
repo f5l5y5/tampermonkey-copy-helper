@@ -196,7 +196,12 @@ function handleClick(e) {
     document.querySelector(".cp-modal-wrapper").style.display = "block";
     const selectorStr = selector[hostkey] || ".markdown-body";
     console.log(selectorStr);
-    const nodes = document.querySelector(selectorStr).cloneNode(true).children;
+    const clonedContent = document.querySelector(selectorStr).cloneNode(true);
+    
+    // 应用平台特定的预处理
+    processDocument[hostkey] && processDocument[hostkey](clonedContent);
+    
+    const nodes = clonedContent.children;
 
     document.querySelector("#nice").innerHTML = "";
     const markdownBody = document.createElement("div");
